@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trendy Topics - Global Trending Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">&#9650;</span>
+        <h1>Trendy Topics</h1>
+      </div>
+      <div class="header-meta">
+        <div class="status-badge" id="statusBadge">
+          <span class="status-dot"></span>
+          <span id="statusText">Loading...</span>
+        </div>
+        <button class="btn btn-refresh" id="refreshBtn" title="Refresh now">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M1 8a7 7 0 0 1 13.2-3.2M15 1v4h-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 8a7 7 0 0 1-13.2 3.2M1 15v-4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero-content">
+        <h2>What's happening in the world</h2>
+        <p>Real-time trending topics from Reddit, GitHub, and News sources — aggregated in one place.</p>
+      </div>
+      <div class="stats-bar">
+        <div class="stat" id="statTotal">
+          <span class="stat-value">--</span>
+          <span class="stat-label">Trends</span>
+        </div>
+        <div class="stat" id="statSources">
+          <span class="stat-value">--</span>
+          <span class="stat-label">Sources</span>
+        </div>
+        <div class="stat" id="statUpdated">
+          <span class="stat-value">--</span>
+          <span class="stat-label">Updated</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters">
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="reddit">Reddit</button>
+        <button class="filter-btn" data-filter="github">GitHub</button>
+        <button class="filter-btn" data-filter="news">News</button>
+      </div>
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="search-icon">
+          <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search trends..." class="search-input">
+      </div>
+    </section>
+
+    <section class="trends-container" id="trendsContainer">
+      <div class="loading-state" id="loadingState">
+        <div class="loader"></div>
+        <p>Fetching global trending topics...</p>
+      </div>
+      <div class="trends-grid" id="trendsGrid"></div>
+      <div class="empty-state" id="emptyState" style="display:none">
+        <div class="empty-icon">&#128200;</div>
+        <h3>No trends found</h3>
+        <p>Try adjusting your filters or search terms.</p>
+      </div>
+    </section>
+
+    <section class="errors-section" id="errorsSection" style="display:none">
+      <div class="error-banner">
+        <span class="error-icon">&#9888;</span>
+        <div class="error-text">
+          <strong>Some sources unavailable</strong>
+          <span id="errorDetails"></span>
+        </div>
+        <button class="btn btn-small" id="dismissErrors">&times;</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Trendy Topics &mdash; Global internet trends aggregated from public sources.</p>
+    <p class="footer-links">
+      <a href="/api/health">API Health</a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://reddit.com" target="_blank" rel="noopener">Reddit</a>
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
