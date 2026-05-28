@@ -2,7 +2,7 @@
 
 A real-time dashboard that tracks trending topics across the internet by aggregating data from multiple sources.
 
-🌐 **Live demo:** [trendy-topics.vercel.app](https://trendy-topics.vercel.app)
+🌐 **Live demo:** [trendy-topics.netlify.app](https://trendy-topics.netlify.app)
 
 ## Features
 
@@ -32,26 +32,28 @@ npm start
 
 Visit `http://localhost:3000` in your browser.
 
-## Deploy to Vercel
+## Deploy to Netlify
 
 The easiest way to deploy:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FEnux40%2Ftren_topics)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Enux40/tren_topics)
 
 ### Manual Deploy
 
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
+1. Push the repo to GitHub
+2. Log in to [Netlify](https://app.netlify.com)
+3. Click **"Add new site" → "Import an existing project"**
+4. Connect your GitHub repo
+5. Netlify auto-detects the config from `netlify.toml` — just click **"Deploy"**
 
 The project is already configured with:
-- **`vercel.json`** — Routing, cron jobs, and function settings
-- **`api/index.js`** — Express app adapted for serverless runtime
-- **Vercel Cron Job** — Automatically refreshes trends every 10 minutes (via `POST /api/refresh`)
+- **`netlify.toml`** — Build settings, redirects, and function routing
+- **`netlify/functions/api.js`** — Express app wrapped with `serverless-http`
+- **Netlify Functions** — API routes run as serverless functions
+
+### Scheduled Refresh
+
+To keep the cache warm, set up a Netlify scheduled function or use a free cron service (like cron-job.org) to hit `POST https://your-site.netlify.app/api/refresh` every 10 minutes.
 
 ### Environment Variables
 
@@ -66,7 +68,7 @@ Get a free key at [newsapi.org/register](https://newsapi.org/register).
 | Method | Path | Description |
 |--------|------|-------------|
 | `GET` | `/api/trends` | Get cached trending topics |
-| `POST` | `/api/refresh` | Force refresh all sources (used by Vercel Cron) |
+| `POST` | `/api/refresh` | Force refresh all sources |
 | `GET` | `/api/health` | Health check and stats |
 
 ## Tech Stack
@@ -74,7 +76,7 @@ Get a free key at [newsapi.org/register](https://newsapi.org/register).
 - **Backend:** Node.js, Express
 - **Data:** Axios, Cheerio
 - **Frontend:** Vanilla JS, CSS with dark theme
-- **Hosting:** Vercel (serverless + cron jobs)
+- **Hosting:** Netlify (serverless functions + static hosting)
 
 ## License
 

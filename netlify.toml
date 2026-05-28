@@ -1,0 +1,16 @@
+[build]
+  command = "echo 'Static site ready'"
+  functions = "netlify/functions"
+  publish = "public"
+
+# Route all API requests to the serverless function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Serve static files from the public directory
+[[redirects]]
+  from = "/*"
+  to = "/:splat"
+  status = 200
